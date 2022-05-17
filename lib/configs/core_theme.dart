@@ -7,7 +7,7 @@ const fontFamily = 'Poppins';
 final themeLight = ThemeData(
   primarySwatch: Colors.teal,
   fontFamily: fontFamily,
-  accentColor: AppTheme.light.primary,
+  // accentColor: AppTheme.light.primary,
   primaryColor: AppTheme.light.primary,
   brightness: Brightness.light,
   backgroundColor: Colors.white,

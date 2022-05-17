@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../animations/entrance_fader.dart';
 import '../configs/app.dart';
-import '../configs/app_dimensions.dart';
-import '../configs/app_typography.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData.dark(),
+        theme: ThemeData.light(),
         initialRoute: '/splash',
         routes: {
           '/splash': (context) => const Splash(),
