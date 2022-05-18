@@ -1,21 +1,25 @@
-import 'package:covid_tracker/configs/app_dimensions.dart';
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:flutter/material.dart';
 
+import '../models/covid.dart';
+
 class DataCard extends StatelessWidget {
+  final Covid? covid;
   final String? global;
   final String? totalCases;
-  final String? totalDaths;
+  final String? totalDeaths;
   final String? totalRecoveries;
   final int? totalData;
 
-  const DataCard(
-      {super.key,
-      this.global,
-      this.totalCases,
-      this.totalData,
-      this.totalDaths,
-      this.totalRecoveries});
+  const DataCard({
+    super.key,
+    this.global,
+    this.totalCases,
+    this.totalData,
+    this.totalDeaths,
+    this.totalRecoveries,
+    this.covid,
+  });
 
   @override
   Widget build(BuildContext context) {
