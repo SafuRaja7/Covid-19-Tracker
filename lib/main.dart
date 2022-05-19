@@ -1,5 +1,5 @@
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
-import 'package:covid_tracker/screens/global_data.dart';
+import 'package:covid_tracker/screens/dashboard.dart';
 import 'package:covid_tracker/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -43,36 +43,42 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 } else if (state is CovidFailure) {
                   return Text(state.error!);
                 } else if (state is CovidSuccess) {
-                  return Expanded(
-                    child: ListView(
-                      children: [
-                        DataCard(
-                          global: 'Global',
-                          totalCases: 'Total Cases',
-                          covidCasulalities: state.data!.cases.toString(),
-                        ),
-                        Space.y1!,
-                         DataCard(
-                          global: 'Global',
-                          totalCases: 'Total Deaths',
-                           covidCasulalities: state.data!.deaths.toString(),
-                        ),
-                        Space.y1!,
-                         DataCard(
-                          global: 'Global',
-                          totalCases: 'Total Recovered',
-                          covidCasulalities: state.data!.recovered.toString(),
-                        )
-                      ],
-                    ),
+                  return Column(
+                    children: [
+                      DataCard(
+                        global: 'Global',
+                        totalCases: 'Total Cases',
+                        totalData: state.data!.cases.toString(),
+                      ),
+                      Space.y1!,
+                      DataCard(
+                        global: 'Global',
+                        totalCases: 'Total Deaths',
+                        totalData: state.data!.deaths.toString(),
+                      ),
+                      Space.y1!,
+                      DataCard(
+                        global: 'Global',
+                        totalCases: 'Total Recovered',
+                        totalData: state.data!.recovered.toString(),
+                      )
+                    ],
                   );
                 } else {
                   return const Text('Something went Wrong');
                 }
               },
             ),
+            ElevatedButton(onPressed: () {}, child: const Text("Countries"))
           ],
         ),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   items: const [
+        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'World',),
+        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Pakistan'),
+        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Countries'),
+        //   ],
+        // ),
       ),
     );
   }

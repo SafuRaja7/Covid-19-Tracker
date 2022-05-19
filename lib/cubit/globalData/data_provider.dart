@@ -1,6 +1,6 @@
 part of 'covid_cubit.dart';
 
-class CovidDataProvider {
+class GlobalDataProvider {
   static final dio = Dio();
 
   static Future<Covid> fetchData() async {

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:covid_tracker/models/covid.dart';
+import 'package:covid_tracker/models/global.dart';
 
 part 'covid_state.dart';
 part 'data_provider.dart';
