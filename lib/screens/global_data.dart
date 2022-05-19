@@ -43,24 +43,28 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 } else if (state is CovidFailure) {
                   return Text(state.error!);
                 } else if (state is CovidSuccess) {
-                  return Column(
-                    children: [
-                      DataCard(
-                        global: 'Global',
-                        totalCases: 'Total Cases',
-                        covid: state.data,
-                      ),
-                      Space.y1!,
-                      const DataCard(
-                        global: 'Global',
-                        totalCases: 'Total Deaths',
-                      ),
-                      Space.y1!,
-                      const DataCard(
-                        global: 'Global',
-                        totalCases: 'Total Recovered',
-                      )
-                    ],
+                  return Expanded(
+                    child: ListView(
+                      children: [
+                        DataCard(
+                          global: 'Global',
+                          totalCases: 'Total Cases',
+                          covidCasulalities: state.data!.cases.toString(),
+                        ),
+                        Space.y1!,
+                         DataCard(
+                          global: 'Global',
+                          totalCases: 'Total Deaths',
+                           covidCasulalities: state.data!.deaths.toString(),
+                        ),
+                        Space.y1!,
+                         DataCard(
+                          global: 'Global',
+                          totalCases: 'Total Recovered',
+                          covidCasulalities: state.data!.recovered.toString(),
+                        )
+                      ],
+                    ),
                   );
                 } else {
                   return const Text('Something went Wrong');
