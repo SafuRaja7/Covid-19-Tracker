@@ -51,10 +51,10 @@ class DataCard extends StatelessWidget {
             style: AppText.h2b,
           ),
           Space.y2!,
-          // Text(
-          //   covid!.cases!.toString(),
-          //   style: AppText.h2,
-          // ),
+          Text(
+            covid!.cases!.toString(),
+            style: AppText.h2,
+          ),
         ],
       ),
     );

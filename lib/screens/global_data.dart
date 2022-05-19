@@ -45,9 +45,10 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 } else if (state is CovidSuccess) {
                   return Column(
                     children: [
-                      const DataCard(
+                      DataCard(
                         global: 'Global',
                         totalCases: 'Total Cases',
+                        covid: state.data,
                       ),
                       Space.y1!,
                       const DataCard(

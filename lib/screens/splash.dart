@@ -1,3 +1,4 @@
+import 'package:covid_tracker/configs/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import '../animations/entrance_fader.dart';
 import '../configs/app.dart';
@@ -30,8 +31,11 @@ class _SplashState extends State<Splash> {
         child: EntranceFader(
           duration: Duration(seconds: 2),
           offset: Offset(0, 10),
-          child: Image(
-            image: AssetImage('lib/assets/splash.png'),
+          child: SizedBox(
+            height: 300,
+            child: Image(
+              image: AssetImage('lib/assets/splash.png'),
+            ),
           ),
         ),
       ),
