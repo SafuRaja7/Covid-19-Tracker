@@ -9,13 +9,11 @@ class DataCard extends StatelessWidget {
   final String? totalCases;
   final String? totalDeaths;
   final String? totalRecoveries;
-  final int? totalData;
 
   const DataCard({
     super.key,
     this.global,
     this.totalCases,
-    this.totalData,
     this.totalDeaths,
     this.totalRecoveries,
     this.covid,
@@ -53,10 +51,10 @@ class DataCard extends StatelessWidget {
             style: AppText.h2b,
           ),
           Space.y2!,
-          Text(
-            covid!.totalCases.toString(),
-            style: AppText.h2,
-          ),
+          // Text(
+          //   covid!.cases!.toString(),
+          //   style: AppText.h2,
+          // ),
         ],
       ),
     );

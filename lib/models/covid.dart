@@ -1,40 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Covid {
-  final int totalCases;
-  final int totalDeaths;
-  final int totalRecovered;
+  final int? cases;
+  final int? deaths;
+  final int? recovered;
   Covid({
-    required this.totalCases,
-    required this.totalDeaths,
-    required this.totalRecovered,
+    required this.cases,
+    required this.deaths,
+    required this.recovered,
   });
 
   Covid copyWith({
-    int? totalCases,
-    int? totalDeaths,
-    int? totalRecovered,
+    int? cases,
+    int? deaths,
+    int? recovered,
   }) {
     return Covid(
-      totalCases: totalCases ?? this.totalCases,
-      totalDeaths: totalDeaths ?? this.totalDeaths,
-      totalRecovered: totalRecovered ?? this.totalRecovered,
+      cases: cases ?? this.cases,
+      deaths: deaths ?? this.deaths,
+      recovered: recovered ?? this.recovered,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'totalCases': totalCases,
-      'totalDeaths': totalDeaths,
-      'totalRecovered': totalRecovered,
+      'cases': cases,
+      'deaths': deaths,
+      'recovered': recovered,
     };
   }
 
   factory Covid.fromMap(Map<String, dynamic> map) {
     return Covid(
-      totalCases: map['totalCases'] as int,
-      totalDeaths: map['totalDeaths'] as int,
-      totalRecovered: map['totalRecovered'] as int,
+      cases: map['cases'] != null ? map['cases'] as int : null,
+      deaths: map['deaths'] != null ? map['deaths'] as int : null,
+      recovered: map['recovered'] != null ? map['recovered'] as int : null,
     );
   }
 
@@ -45,19 +46,18 @@ class Covid {
 
   @override
   String toString() =>
-      'Covid(totalCases: $totalCases, totalDeaths: $totalDeaths, totalRecovered: $totalRecovered)';
+      'Covid(cases: $cases, deaths: $deaths, recovered: $recovered)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is Covid &&
-        other.totalCases == totalCases &&
-        other.totalDeaths == totalDeaths &&
-        other.totalRecovered == totalRecovered;
+        other.cases == cases &&
+        other.deaths == deaths &&
+        other.recovered == recovered;
   }
 
   @override
-  int get hashCode =>
-      totalCases.hashCode ^ totalDeaths.hashCode ^ totalRecovered.hashCode;
+  int get hashCode => cases.hashCode ^ deaths.hashCode ^ recovered.hashCode;
 }

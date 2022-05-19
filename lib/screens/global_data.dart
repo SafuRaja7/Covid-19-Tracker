@@ -1,4 +1,3 @@
-import 'package:covid_tracker/configs/app_dimensions.dart';
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
 import 'package:covid_tracker/widgets/data_card.dart';
@@ -6,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../configs/app.dart';
-import '../models/covid.dart';
 
 class GlobalDataScreen extends StatefulWidget {
   const GlobalDataScreen({Key? key}) : super(key: key);
@@ -19,7 +17,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
   @override
   void initState() {
     final covidCubit = BlocProvider.of<CovidCubit>(context);
-    if (covidCubit.state.data == null || covidCubit.state.data!.isEmpty) {
+    if (covidCubit.state.data == null) {
       covidCubit.fetchData();
     }
     super.initState();
@@ -34,7 +32,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
           children: [
             Center(
               child: SizedBox(
-                height: AppDimensions.normalize(120),
+                height: AppDimensions.normalize(110),
                 child: Image.asset('lib/assets/global.png'),
               ),
             ),
@@ -45,14 +43,23 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 } else if (state is CovidFailure) {
                   return Text(state.error!);
                 } else if (state is CovidSuccess) {
-                  return ListView(
-                    children: state.data!
-                        .map((covid) => DataCard(
-                              global: 'Global',
-                              totalCases: 'Total Cases',
-                              totalData: covid.totalCases,
-                            ))
-                        .toList(),
+                  return Column(
+                    children: [
+                      const DataCard(
+                        global: 'Global',
+                        totalCases: 'Total Cases',
+                      ),
+                      Space.y1!,
+                      const DataCard(
+                        global: 'Global',
+                        totalCases: 'Total Deaths',
+                      ),
+                      Space.y1!,
+                      const DataCard(
+                        global: 'Global',
+                        totalCases: 'Total Recovered',
+                      )
+                    ],
                   );
                 } else {
                   return const Text('Something went Wrong');
