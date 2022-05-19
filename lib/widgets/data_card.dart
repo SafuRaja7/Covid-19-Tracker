@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/covid.dart';
 
 class DataCard extends StatelessWidget {
-  final Covid? covid;
+  final String? covidCasulalities;
   final String? global;
   final String? totalCases;
   final String? totalDeaths;
@@ -16,7 +16,7 @@ class DataCard extends StatelessWidget {
     this.totalCases,
     this.totalDeaths,
     this.totalRecoveries,
-    this.covid,
+    this.covidCasulalities,
   });
 
   @override
@@ -52,7 +52,7 @@ class DataCard extends StatelessWidget {
           ),
           Space.y2!,
           Text(
-            covid!.cases!.toString(),
+            covidCasulalities!.toString(),
             style: AppText.h2,
           ),
         ],
