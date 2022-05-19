@@ -54,7 +54,7 @@ class DataCard extends StatelessWidget {
           ),
           Space.y2!,
           Text(
-            totalData.toString(),
+            covid!.totalCases.toString(),
             style: AppText.h2,
           ),
         ],

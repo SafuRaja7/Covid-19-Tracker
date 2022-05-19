@@ -19,7 +19,9 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
   @override
   void initState() {
     final covidCubit = BlocProvider.of<CovidCubit>(context);
-    covidCubit.fetchData();
+    if (covidCubit.state.data == null || covidCubit.state.data!.isEmpty) {
+      covidCubit.fetchData();
+    }
     super.initState();
   }
 
@@ -43,14 +45,15 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 } else if (state is CovidFailure) {
                   return Text(state.error!);
                 } else if (state is CovidSuccess) {
-                  List<Covid> covidData =
-                      List.generate(3, (index) => state.data![index]);
-                  return Column(
-                      children: covidData
-                          .map(
-                            (covid) => DataCard(covid: covid),
-                          )
-                          .toList());
+                  return ListView(
+                    children: state.data!
+                        .map((covid) => DataCard(
+                              global: 'Global',
+                              totalCases: 'Total Cases',
+                              totalData: covid.totalCases,
+                            ))
+                        .toList(),
+                  );
                 } else {
                   return const Text('Something went Wrong');
                 }

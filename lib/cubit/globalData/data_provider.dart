@@ -8,6 +8,7 @@ class CovidDataProvider {
       final response =
           await dio.get('https://coronavirus-19-api.herokuapp.com/all');
       Map raw = response.data;
+
       List<Covid> covidData = List.generate(
         raw.length,
         (index) => Covid.fromMap(
