@@ -10,7 +10,9 @@ class CountriesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/countries_data_screen');
+      },
       child: Container(
         height: AppDimensions.normalize(30),
         width: double.infinity,

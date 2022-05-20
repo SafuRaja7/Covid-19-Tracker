@@ -1,6 +1,6 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
-import 'package:covid_tracker/widgets/data_card.dart';
+import 'package:covid_tracker/widgets/global_data_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,7 +48,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       DataCard(
                         global: 'Global',
                         totalCases: 'Total Cases',
-                        totalData: state.data!.cases.toString(),
+                        totalData: state.data!.cases!.toString(),
                       ),
                       Space.y1!,
                       DataCard(
@@ -75,17 +75,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
               },
               child: const Text("Countries"),
             ),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'World',
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Pakistan'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Countries'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Me'),
           ],
         ),
       ),

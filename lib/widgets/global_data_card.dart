@@ -1,8 +1,6 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:flutter/material.dart';
 
-import '../models/global.dart';
-
 class DataCard extends StatelessWidget {
   final String? totalData;
   final String? global;

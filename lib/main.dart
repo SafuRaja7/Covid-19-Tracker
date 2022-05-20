@@ -1,5 +1,6 @@
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
 import 'package:covid_tracker/screens/dashboard.dart';
 import 'package:covid_tracker/screens/splash.dart';
@@ -15,7 +16,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/splash': (context) => const Splash(),
           '/global_data': (context) => const GlobalDataScreen(),
-          '/countries_screen': (context) => const CountriesScreen()
+          '/countries_screen': (context) => const CountriesScreen(),
+          '/countries_data_screen': (context) => const CountriesDataScreen(),
         },
       ),
     );
