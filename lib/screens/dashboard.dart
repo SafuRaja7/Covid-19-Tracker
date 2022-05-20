@@ -77,13 +77,16 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
             ),
           ],
         ),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   items: const [
-        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'World',),
-        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Pakistan'),
-        //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Countries'),
-        //   ],
-        // ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'World',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Pakistan'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Countries'),
+          ],
+        ),
       ),
     );
   }
