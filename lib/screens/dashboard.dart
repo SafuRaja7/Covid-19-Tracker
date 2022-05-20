@@ -85,6 +85,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
             ),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Pakistan'),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Countries'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Me'),
           ],
         ),
       ),
