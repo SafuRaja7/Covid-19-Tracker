@@ -1,4 +1,6 @@
+import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+import 'package:covid_tracker/screens/countries_screen.dart';
 import 'package:covid_tracker/screens/dashboard.dart';
 import 'package:covid_tracker/screens/splash.dart';
 import 'package:flutter/material.dart';
@@ -25,16 +27,21 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CovidCubit(),
         ),
+        BlocProvider(
+          create: (context) => CountriesdataCubit(),
+        ),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData.light(),
-          initialRoute: '/splash',
-          routes: {
-            '/splash': (context) => const Splash(),
-            '/global_data': (context) => const GlobalDataScreen(),
-          }),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData.light(),
+        initialRoute: '/splash',
+        routes: {
+          '/splash': (context) => const Splash(),
+          '/global_data': (context) => const GlobalDataScreen(),
+          '/countries_screen': (context) => const CountriesScreen()
+        },
+      ),
     );
   }
 }

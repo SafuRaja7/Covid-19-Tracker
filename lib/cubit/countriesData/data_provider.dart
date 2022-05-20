@@ -3,12 +3,18 @@ part of 'countries_cubit.dart';
 class CountryDataProvider {
   static final dio = Dio();
 
-  Future<List<Country>> fetchCountry() async {
+  static Future<List<Country>> fetchCountry() async {
     try {
       final response =
           await dio.get('https://coronavirus-19-api.herokuapp.com/countries');
-      List<Country> raw = response.data; // to be removed
-      return raw; //to be removed
+      List raw = response.data;
+      List<Country> countries = List.generate(
+        raw.length,
+        (index) => Country.fromMap(
+          raw[index],
+        ),
+      );
+      return countries;
     } catch (e) {
       throw Exception("Internal Server Error");
     }

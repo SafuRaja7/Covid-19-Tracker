@@ -1,5 +1,5 @@
 part of 'covid_cubit.dart';
 
 class CovidRepo {
-  Future<Covid> fetchData() => CovidDataProvider.fetchData();
+  Future<Covid> fetchData() => GlobalDataProvider.fetchData();
 }
