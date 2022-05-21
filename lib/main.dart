@@ -1,9 +1,11 @@
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+
 import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
 import 'package:covid_tracker/screens/dashboard.dart';
 import 'package:covid_tracker/screens/splash.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Country {
   final String? country;
   final int? cases;
-  final int? todaCases;
+  final int? todayCases;
   final int? deaths;
   final int? todayDeaths;
   final int? active;
@@ -11,7 +12,7 @@ class Country {
   Country({
     this.country,
     this.cases,
-    this.todaCases,
+    this.todayCases,
     required this.deaths,
     required this.todayDeaths,
     required this.active,
@@ -21,7 +22,7 @@ class Country {
   Country copyWith({
     String? country,
     int? cases,
-    int? todaCases,
+    int? todayCases,
     int? deaths,
     int? todayDeaths,
     int? active,
@@ -30,7 +31,7 @@ class Country {
     return Country(
       country: country ?? this.country,
       cases: cases ?? this.cases,
-      todaCases: todaCases ?? this.todaCases,
+      todayCases: todayCases ?? this.todayCases,
       deaths: deaths ?? this.deaths,
       todayDeaths: todayDeaths ?? this.todayDeaths,
       active: active ?? this.active,
@@ -42,7 +43,7 @@ class Country {
     return <String, dynamic>{
       'country': country,
       'cases': cases,
-      'todaCases': todaCases,
+      'todayCases': todayCases,
       'deaths': deaths,
       'todayDeaths': todayDeaths,
       'active': active,
@@ -54,7 +55,7 @@ class Country {
     return Country(
       country: map['country'] != null ? map['country'] as String : null,
       cases: map['cases'] != null ? map['cases'] as int : null,
-      todaCases: map['todaCases'] != null ? map['todaCases'] as int : null,
+      todayCases: map['todayCases'] != null ? map['todayCases'] as int : null,
       deaths: map['deaths'] != null ? map['deaths'] as int : null,
       todayDeaths:
           map['todayDeaths'] != null ? map['todayDeaths'] as int : null,
@@ -70,7 +71,7 @@ class Country {
 
   @override
   String toString() {
-    return 'Country(country: $country, cases: $cases, todaCases: $todaCases, deaths: $deaths, todayDeaths: $todayDeaths, active: $active, critical: $critical)';
+    return 'Country(country: $country, cases: $cases, todayCases: $todayCases, deaths: $deaths, todayDeaths: $todayDeaths, active: $active, critical: $critical)';
   }
 
   @override
@@ -80,7 +81,7 @@ class Country {
     return other is Country &&
         other.country == country &&
         other.cases == cases &&
-        other.todaCases == todaCases &&
+        other.todayCases == todayCases &&
         other.deaths == deaths &&
         other.todayDeaths == todayDeaths &&
         other.active == active &&
@@ -91,7 +92,7 @@ class Country {
   int get hashCode {
     return country.hashCode ^
         cases.hashCode ^
-        todaCases.hashCode ^
+        todayCases.hashCode ^
         deaths.hashCode ^
         todayDeaths.hashCode ^
         active.hashCode ^

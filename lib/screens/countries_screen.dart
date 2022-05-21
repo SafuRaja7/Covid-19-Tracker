@@ -1,5 +1,6 @@
 import 'package:covid_tracker/configs/app.dart';
 import 'package:covid_tracker/configs/app_dimensions.dart';
+import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/widgets/countries_card.dart';
 import 'package:flutter/material.dart';
@@ -28,31 +29,38 @@ class _CountriesScreenState extends State<CountriesScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: BlocBuilder<CountriesdataCubit, CountriesdataState>(
-            builder: (context, state) {
-              if (state is CountriesdataLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state is CountriesdataFailure) {
-                return Text(state.error!);
-              } else if (state is CountriesdataSuccess) {
-                return SizedBox(
-                  height: AppDimensions.normalize(290),
-                  child: ListView(
-                    children: state.data!
-                        .map(
-                          (country) => CountriesCard(country),
-                        )
-                        .toList(),
-                  ),
-                );
-              } else {
-                return const Center(
-                  child: Text("Something went wrong!!"),
-                );
-              }
-            },
+          child: Column(
+            children: [
+              SizedBox(
+                height: AppDimensions.normalize(30),
+              ),
+              BlocBuilder<CountriesdataCubit, CountriesdataState>(
+                builder: (context, state) {
+                  if (state is CountriesdataLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is CountriesdataFailure) {
+                    return Text(state.error!);
+                  } else if (state is CountriesdataSuccess) {
+                    return SizedBox(
+                      height: AppDimensions.normalize(292),
+                      child: ListView(
+                        children: state.data!
+                            .map(
+                              (country) => CountriesCard(country),
+                            )
+                            .toList(),
+                      ),
+                    );
+                  } else {
+                    return const Center(
+                      child: Text("Something went wrong!!"),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
         ),
       ),

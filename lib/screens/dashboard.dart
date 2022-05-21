@@ -69,11 +69,22 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 }
               },
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/countries_screen');
-              },
-              child: const Text("Countries"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/countries_screen');
+                  },
+                  child: const Text("Hit me"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/countries_screen');
+                  },
+                  child: const Text("Pakiatan"),
+                ),
+              ],
             ),
           ],
         ),

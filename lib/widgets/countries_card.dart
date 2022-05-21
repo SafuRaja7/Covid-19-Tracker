@@ -1,6 +1,6 @@
-import 'package:covid_tracker/configs/app.dart';
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/models/countries.dart';
+import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:flutter/material.dart';
 
 class CountriesCard extends StatelessWidget {
@@ -11,31 +11,36 @@ class CountriesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/countries_data_screen');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => CountriesDataScreen(
+                  country: country,
+                )),
+          ),
+        );
       },
       child: Container(
-        height: AppDimensions.normalize(30),
+        height: AppDimensions.normalize(25),
         width: double.infinity,
-        margin: Space.all(0.5, 0.5),
+        margin: Space.all(0.5, 0.1),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(
-            AppDimensions.normalize(3),
+            AppDimensions.normalize(1.5),
           ),
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,
-              offset: Offset(0, 10),
-              blurRadius: 12,
-              spreadRadius: 6.0,
+              offset: Offset(0, 30),
+              blurRadius: 20,
+              spreadRadius: 1.0,
             ),
           ],
         ),
         child: Column(
           children: [
-            Space.y!,
             Text(country.country!),
-            Space.y1!,
             Text(country.cases!.toString()),
           ],
         ),
