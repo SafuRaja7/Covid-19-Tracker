@@ -38,6 +38,9 @@ dependencies:
   # networking
   dio: ^4.0.6
 
+  #gradient 
+  new_gradient_app_bar: ^0.2.0
+
   # local cache
   hive: ^2.1.0
   hive_flutter: ^1.1.0

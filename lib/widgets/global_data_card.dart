@@ -24,7 +24,12 @@ class DataCard extends StatelessWidget {
       width: double.infinity,
       margin: Space.all(0.7, 0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        gradient: const LinearGradient(
+          colors: [
+            Colors.cyan,
+            Colors.indigo,
+          ],
+        ),
         borderRadius: BorderRadius.circular(
           AppDimensions.normalize(3),
         ),

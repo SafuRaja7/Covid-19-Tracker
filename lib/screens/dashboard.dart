@@ -32,29 +32,29 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
     App.init(context);
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BlocBuilder<NavBarCubit, NavbarState>(
-          builder: (context, state) {
-            return BottomNavigationBar(
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-                BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-                BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-              ],
-              onTap: (index) {
-                if (index == 0) {
-                  BlocProvider.of<NavBarCubit>(context)
-                      .getNavBarItem(NavBarItem.global);
-                } else if (index == 1) {
-                  BlocProvider.of<NavBarCubit>(context)
-                      .getNavBarItem(NavBarItem.countries);
-                } else if (index == 2) {
-                  BlocProvider.of<NavBarCubit>(context)
-                      .getNavBarItem(NavBarItem.pakistan);
-                }
-              },
-            );
-          },
-        ),
+        // bottomNavigationBar: BlocBuilder<NavBarCubit, NavbarState>(
+        //   builder: (context, state) {
+        //     return BottomNavigationBar(
+        //       items: const [
+        //         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
+        //         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
+        //         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
+        //       ],
+        //       onTap: (index) {
+        //         if (index == 0) {
+        //           BlocProvider.of<NavBarCubit>(context)
+        //               .getNavBarItem(NavBarItem.global);
+        //         } else if (index == 1) {
+        //           BlocProvider.of<NavBarCubit>(context)
+        //               .getNavBarItem(NavBarItem.countries);
+        //         } else if (index == 2) {
+        //           BlocProvider.of<NavBarCubit>(context)
+        //               .getNavBarItem(NavBarItem.pakistan);
+        //         }
+        //       },
+        //     );
+        //   },
+        // ),
         body: Column(
           children: [
             Center(
@@ -96,19 +96,29 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 }
               },
             ),
-            BlocBuilder<NavBarCubit, NavbarState>(
-              builder: (context, state) {
-                if (state.navbarItem == NavBarItem.global) {
-                  return const GlobalDataScreen();
-                } else if (state.navbarItem == NavBarItem.countries) {
-                  return const CountriesScreen();
-                } else if (state.navbarItem == NavBarItem.pakistan) {
-                  return const CountriesDataScreen();
-                } else {
-                  return Container();
-                }
-              },
+
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/countries_screen');
+                },
+                child: const Text('Countries'),
+              ),
             ),
+
+            // BlocBuilder<NavBarCubit, NavbarState>(
+            //   builder: (context, state) {
+            //     if (state.navbarItem == NavBarItem.global) {
+            //       return const GlobalDataScreen();
+            //     } else if (state.navbarItem == NavBarItem.countries) {
+            //       return const CountriesScreen();
+            //     } else if (state.navbarItem == NavBarItem.pakistan) {
+            //       return const CountriesDataScreen();
+            //     } else {
+            //       return Container();
+            //     }
+            //   },
+            // ),
           ],
         ),
       ),
