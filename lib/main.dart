@@ -1,5 +1,6 @@
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+import 'package:covid_tracker/cubit/navBar/navbar_cubit.dart';
 
 import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CountriesdataCubit(),
+        ),
+        BlocProvider<NavBarCubit>(
+          create: (context) => NavBarCubit(),
         ),
       ],
       child: MaterialApp(
