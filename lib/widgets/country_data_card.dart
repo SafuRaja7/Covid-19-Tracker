@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:covid_tracker/configs/configs.dart';
+import 'package:intl/intl.dart';
 
 class CountriesData extends StatelessWidget {
-  final String? data;
+  final int? data;
   final String? headerString;
 
   const CountriesData({
@@ -14,14 +15,18 @@ class CountriesData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat("###,###");
     return Column(
       children: [
         Container(
-          height: AppDimensions.normalize(50),
+          height: AppDimensions.normalize(35),
           width: double.infinity,
           margin: Space.all(0.5, 0),
+          padding: Space.all(0.7, 0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            gradient: const LinearGradient(
+              colors: [Colors.cyan, Colors.indigo],
+            ),
             borderRadius: BorderRadius.circular(
               AppDimensions.normalize(3),
             ),
@@ -34,17 +39,30 @@ class CountriesData extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Space.y1!,
-              Text(
-                data.toString(),
-                style: AppText.h1b,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Space.y!,
+                  Text(
+                    formatter.format(data),
+                    style: AppText.h1b,
+                  ),
+                  Space.y1!,
+                  Text(
+                    headerString!,
+                    style: AppText.h3!,
+                  ),
+                ],
               ),
-              Space.y1!,
-              Text(
-                headerString!,
-                style: AppText.h3,
+              Opacity(
+                opacity: 0.5,
+                child: Image.asset(
+                  'lib/assets/virus.png',
+                  height: AppDimensions.normalize(25),
+                ),
               ),
             ],
           ),

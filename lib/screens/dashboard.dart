@@ -59,10 +59,15 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
           children: [
             Center(
               child: SizedBox(
-                height: AppDimensions.normalize(110),
+                height: AppDimensions.normalize(90),
                 child: Image.asset('lib/assets/global.png'),
               ),
             ),
+            Text(
+              'Global Covid-19',
+              style: AppText.h1,
+            ),
+            Space.y!,
             BlocBuilder<CovidCubit, CovidState>(
               builder: (context, state) {
                 if (state is CovidLoading) {
@@ -75,19 +80,19 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       DataCard(
                         global: 'Global',
                         totalCases: 'Total Cases',
-                        totalData: state.data!.cases!.toString(),
+                        totalData: state.data!.cases!,
                       ),
                       Space.y1!,
                       DataCard(
                         global: 'Global',
                         totalCases: 'Total Deaths',
-                        totalData: state.data!.deaths.toString(),
+                        totalData: state.data!.deaths,
                       ),
                       Space.y1!,
                       DataCard(
                         global: 'Global',
                         totalCases: 'Total Recovered',
-                        totalData: state.data!.recovered.toString(),
+                        totalData: state.data!.recovered,
                       )
                     ],
                   );

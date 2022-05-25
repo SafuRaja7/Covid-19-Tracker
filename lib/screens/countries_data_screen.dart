@@ -3,6 +3,7 @@ import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/models/countries.dart';
 import 'package:covid_tracker/widgets/country_data_card.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CountriesDataScreen extends StatelessWidget {
   final Country? country;
@@ -10,6 +11,7 @@ class CountriesDataScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat("###,###");
     App.init(context);
     return Scaffold(
       appBar: AppBar(
@@ -18,45 +20,67 @@ class CountriesDataScreen extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Space.y2!,
-            Text(
-              'Total Cases',
-              style: AppText.h1b!,
-            ),
-            Space.y2!,
-            Text(
-              country!.cases.toString(),
-              style: AppText.h2b!,
-            ),
-            Space.y!,
-            Text(
-              country!.country.toString(),
-              style: AppText.h2b!,
+            Space.y1!,
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Space.xf(5),
+                  SizedBox(
+                    width: AppDimensions.normalize(70),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Total Cases',
+                          style: AppText.h2,
+                        ),
+                        Text(
+                          formatter.format(country!.cases),
+                          style: AppText.h1b!,
+                        ),
+                        Space.y!,
+                        Text(
+                          country!.country.toString(),
+                          style: AppText.h1!,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Opacity(
+                    opacity: 0.5,
+                    child: Image.asset(
+                      'lib/assets/coronavirus.png',
+                      height: AppDimensions.normalize(40),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Space.y2!,
             CountriesData(
-              data: country!.deaths.toString(),
+              data: country!.deaths,
               headerString: 'Total Deaths',
             ),
             Space.y!,
             CountriesData(
-              data: country!.critical.toString(),
+              data: country!.critical,
               headerString: 'Critical Cases',
             ),
             Space.y!,
             CountriesData(
-              data: country!.todayDeaths.toString(),
+              data: country!.todayDeaths,
               headerString: 'Today Deaths',
             ),
             Space.y!,
             CountriesData(
-              data: country!.active.toString(),
+              data: country!.active,
               headerString: 'Active Cases',
             ),
             Space.y!,
             CountriesData(
-              data: country!.active.toString(),
+              data: country!.active,
               headerString: 'Today Cases',
             ),
           ],

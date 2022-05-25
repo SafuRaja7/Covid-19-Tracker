@@ -26,19 +26,22 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     App.init(context);
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Countries"),
+        ),
+        body: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                height: AppDimensions.normalize(30),
+                height: AppDimensions.normalize(5),
               ),
               BlocBuilder<CountriesdataCubit, CountriesdataState>(
                 builder: (context, state) {
                   if (state is CountriesdataLoading) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: Center(child: CircularProgressIndicator()),
                     );
                   } else if (state is CountriesdataFailure) {
                     return Text(state.error!);
