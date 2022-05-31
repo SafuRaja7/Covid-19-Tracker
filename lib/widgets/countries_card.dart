@@ -29,7 +29,7 @@ class CountriesCard extends StatelessWidget {
           margin: Space.all(0.5, 0.1),
           padding: Space.all(0.7, 0),
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.cyan, Colors.indigo]),
+            color: Colors.white,
             borderRadius: BorderRadius.circular(
               AppDimensions.normalize(1.5),
             ),
