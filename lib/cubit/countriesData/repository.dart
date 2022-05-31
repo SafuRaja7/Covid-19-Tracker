@@ -1,5 +1,7 @@
 part of 'countries_cubit.dart';
 
 class CountryRepo {
-  Future<List<Country>> fetchCountry() => CountryDataProvider.fetchCountry();
+  final CountryDataProvider query = CountryDataProvider();
+  Future<List<Country>> fetchCountry() =>
+      CountryDataProvider.fetchCountry(query: query.toString());
 }
