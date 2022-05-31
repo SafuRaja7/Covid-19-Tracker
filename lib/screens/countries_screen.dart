@@ -40,9 +40,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
               BlocBuilder<CountriesdataCubit, CountriesdataState>(
                 builder: (context, state) {
                   if (state is CountriesdataLoading) {
-                    return const Center(
-                      child: Center(child: CircularProgressIndicator()),
-                    );
+                    return const LinearProgressIndicator();
                   } else if (state is CountriesdataFailure) {
                     return Text(state.error!);
                   } else if (state is CountriesdataSuccess) {

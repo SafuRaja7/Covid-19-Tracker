@@ -36,9 +36,7 @@ class CountriesCard extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                 color: Colors.black12,
-                offset: Offset(0, 30),
-                blurRadius: 20,
-                spreadRadius: 1.0,
+                offset: Offset(0, 1),
               ),
             ],
           ),

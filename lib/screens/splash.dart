@@ -1,4 +1,4 @@
-import 'package:covid_tracker/configs/app_dimensions.dart';
+import 'package:covid_tracker/configs/configs.dart';
 import 'package:flutter/material.dart';
 import '../animations/entrance_fader.dart';
 import '../configs/app.dart';
@@ -12,7 +12,7 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   void _nextScreen() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/global_data');
     });
   }
@@ -26,17 +26,20 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     App.init(context);
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: EntranceFader(
-          duration: Duration(seconds: 2),
-          offset: Offset(0, 10),
-          child: SizedBox(
-            height: 300,
-            child: Image(
-              image: AssetImage('lib/assets/splash.png'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 300,
+              child: Image(
+                image: AssetImage('lib/assets/splash.png'),
+              ),
             ),
-          ),
+            Space.yf(10),
+            const CircularProgressIndicator()
+          ],
         ),
       ),
     );
