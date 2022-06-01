@@ -4,7 +4,6 @@ import 'package:covid_tracker/cubit/navBar/navbar_cubit.dart';
 import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
 import 'package:covid_tracker/screens/navbar.dart';
-import 'package:covid_tracker/widgets/bottom_nav_bar.dart';
 import 'package:covid_tracker/widgets/global_data_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,47 +31,48 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
   Widget build(BuildContext context) {
     App.init(context);
     return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: BlocBuilder<NavBarCubit, NavbarState>(
-          builder: (context, state) {
-            return BottomNavigationBar(
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.abc), label: 'Countries'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.abc), label: 'Pakistan'),
-              ],
-              onTap: (index) {
-                if (index == 0) {
-                  BlocProvider.of<NavBarCubit>(context)
-                      .getNavBarItem(NavBarItem.global);
-                } else if (index == 1) {
-                  BlocProvider.of<NavBarCubit>(context)
-                      .getNavBarItem(NavBarItem.countries);
-                } else if (index == 2) {
-                  BlocProvider.of<NavBarCubit>(context)
-                      .getNavBarItem(NavBarItem.pakistan);
-                }
-              },
-            );
-          },
-        ),
-        body: Column(
-          children: [
-            Center(
-              child: SizedBox(
-                height: AppDimensions.normalize(90),
-                child: Image.asset('lib/assets/global.png'),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Scaffold(
+          bottomNavigationBar: BlocBuilder<NavBarCubit, NavbarState>(
+            builder: (context, state) {
+              return BottomNavigationBar(
+                items: const [
+                  BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.abc), label: 'Countries'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.abc), label: 'Pakistan'),
+                ],
+                onTap: (index) {
+                  if (index == 0) {
+                    BlocProvider.of<NavBarCubit>(context)
+                        .getNavBarItem(NavBarItem.global);
+                  } else if (index == 1) {
+                    BlocProvider.of<NavBarCubit>(context)
+                        .getNavBarItem(NavBarItem.countries);
+                  } else if (index == 2) {
+                    BlocProvider.of<NavBarCubit>(context)
+                        .getNavBarItem(NavBarItem.pakistan);
+                  }
+                },
+              );
+            },
+          ),
+          body: Column(
+            children: [
+              Center(
+                child: SizedBox(
+                  height: AppDimensions.normalize(90),
+                  child: Image.asset('lib/assets/global.png'),
+                ),
               ),
-            ),
-            Text(
-              'Global Covid-19',
-              style: AppText.h1,
-            ),
-            Space.y!,
-            Expanded(
-              child: BlocBuilder<CovidCubit, CovidState>(
+              Text(
+                'Global Covid-19',
+                style: AppText.h1,
+              ),
+              Space.y!,
+              BlocBuilder<CovidCubit, CovidState>(
                 builder: (context, state) {
                   if (state is CovidLoading) {
                     return const LinearProgressIndicator();
@@ -118,17 +118,17 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                   }
                 },
               ),
-            ),
-
-            // Center(
-            //   child: ElevatedButton(
-            //     onPressed: () {
-            //       Navigator.pushNamed(context, '/countries_screen');
-            //     },
-            //     child: const Text('Countries'),
-            //   ),
-            // ),
-          ],
+      
+              // Center(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.pushNamed(context, '/countries_screen');
+              //     },
+              //     child: const Text('Countries'),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
