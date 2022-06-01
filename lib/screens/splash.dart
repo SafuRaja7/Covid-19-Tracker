@@ -1,6 +1,5 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:flutter/material.dart';
-import '../animations/entrance_fader.dart';
 import '../configs/app.dart';
 
 class Splash extends StatefulWidget {

@@ -3,6 +3,7 @@ import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
 import 'package:covid_tracker/cubit/navBar/navbar_cubit.dart';
 import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
+import 'package:covid_tracker/screens/navbar.dart';
 import 'package:covid_tracker/widgets/bottom_nav_bar.dart';
 import 'package:covid_tracker/widgets/global_data_card.dart';
 import 'package:flutter/material.dart';
@@ -32,29 +33,31 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
     App.init(context);
     return SafeArea(
       child: Scaffold(
-        // bottomNavigationBar: BlocBuilder<NavBarCubit, NavbarState>(
-        //   builder: (context, state) {
-        //     return BottomNavigationBar(
-        //       items: const [
-        //         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-        //         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-        //         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
-        //       ],
-        //       onTap: (index) {
-        //         if (index == 0) {
-        //           BlocProvider.of<NavBarCubit>(context)
-        //               .getNavBarItem(NavBarItem.global);
-        //         } else if (index == 1) {
-        //           BlocProvider.of<NavBarCubit>(context)
-        //               .getNavBarItem(NavBarItem.countries);
-        //         } else if (index == 2) {
-        //           BlocProvider.of<NavBarCubit>(context)
-        //               .getNavBarItem(NavBarItem.pakistan);
-        //         }
-        //       },
-        //     );
-        //   },
-        // ),
+        bottomNavigationBar: BlocBuilder<NavBarCubit, NavbarState>(
+          builder: (context, state) {
+            return BottomNavigationBar(
+              items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Global'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.abc), label: 'Countries'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.abc), label: 'Pakistan'),
+              ],
+              onTap: (index) {
+                if (index == 0) {
+                  BlocProvider.of<NavBarCubit>(context)
+                      .getNavBarItem(NavBarItem.global);
+                } else if (index == 1) {
+                  BlocProvider.of<NavBarCubit>(context)
+                      .getNavBarItem(NavBarItem.countries);
+                } else if (index == 2) {
+                  BlocProvider.of<NavBarCubit>(context)
+                      .getNavBarItem(NavBarItem.pakistan);
+                }
+              },
+            );
+          },
+        ),
         body: Column(
           children: [
             Center(
@@ -68,61 +71,62 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
               style: AppText.h1,
             ),
             Space.y!,
-            BlocBuilder<CovidCubit, CovidState>(
-              builder: (context, state) {
-                if (state is CovidLoading) {
-                  return const LinearProgressIndicator();
-                } else if (state is CovidFailure) {
-                  return Text(state.error!);
-                } else if (state is CovidSuccess) {
-                  return Column(
-                    children: [
-                      DataCard(
-                        global: 'Global',
-                        totalCases: 'Total Cases',
-                        totalData: state.data!.cases!,
-                      ),
-                      Space.y1!,
-                      DataCard(
-                        global: 'Global',
-                        totalCases: 'Total Deaths',
-                        totalData: state.data!.deaths,
-                      ),
-                      Space.y1!,
-                      DataCard(
-                        global: 'Global',
-                        totalCases: 'Total Recovered',
-                        totalData: state.data!.recovered,
-                      )
-                    ],
-                  );
-                } else {
-                  return const Text('Something went Wrong');
-                }
-              },
-            ),
-
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/countries_screen');
+            Expanded(
+              child: BlocBuilder<CovidCubit, CovidState>(
+                builder: (context, state) {
+                  if (state is CovidLoading) {
+                    return const LinearProgressIndicator();
+                  } else if (state is CovidFailure) {
+                    return Text(state.error!);
+                  } else if (state is CovidSuccess) {
+                    return Column(
+                      children: [
+                        DataCard(
+                          global: 'Global',
+                          totalCases: 'Total Cases',
+                          totalData: state.data!.cases!,
+                        ),
+                        Space.y1!,
+                        DataCard(
+                          global: 'Global',
+                          totalCases: 'Total Deaths',
+                          totalData: state.data!.deaths,
+                        ),
+                        Space.y1!,
+                        DataCard(
+                          global: 'Global',
+                          totalCases: 'Total Recovered',
+                          totalData: state.data!.recovered,
+                        ),
+                        BlocBuilder<NavBarCubit, NavbarState>(
+                          builder: (context, state) {
+                            if (state.navbarItem == NavBarItem.global) {
+                              return const GlobalDataScreen();
+                            } else if (state.navbarItem == NavBarItem.countries) {
+                              return const CountriesScreen();
+                            } else if (state.navbarItem == NavBarItem.pakistan) {
+                              return const CountriesDataScreen();
+                            } else {
+                              return Container();
+                            }
+                          },
+                        ),
+                      ],
+                    );
+                  } else {
+                    return const Text('Something went Wrong');
+                  }
                 },
-                child: const Text('Countries'),
               ),
             ),
 
-            // BlocBuilder<NavBarCubit, NavbarState>(
-            //   builder: (context, state) {
-            //     if (state.navbarItem == NavBarItem.global) {
-            //       return const GlobalDataScreen();
-            //     } else if (state.navbarItem == NavBarItem.countries) {
-            //       return const CountriesScreen();
-            //     } else if (state.navbarItem == NavBarItem.pakistan) {
-            //       return const CountriesDataScreen();
-            //     } else {
-            //       return Container();
-            //     }
-            //   },
+            // Center(
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, '/countries_screen');
+            //     },
+            //     child: const Text('Countries'),
+            //   ),
             // ),
           ],
         ),
