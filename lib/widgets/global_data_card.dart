@@ -53,35 +53,37 @@ class DataCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Space.y!,
-          Text(
-            global!,
-            style: AppText.h3,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                totalCases!,
-                style: AppText.h2b,
-              ),
-              SizedBox(
-                height: AppDimensions.normalize(25),
-                width: AppDimensions.normalize(25),
-                child: const Image(
-                  image: AssetImage('lib/assets/bacteria.png'),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Space.y!,
+            Text(
+              global!,
+              style: AppText.h3,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  totalCases!,
+                  style: AppText.h2b,
                 ),
-              ),
-            ],
-          ),
-          Text(
-            formatter.format(totalData),
-            style: AppText.h2,
-          ),
-        ],
+                SizedBox(
+                  height: AppDimensions.normalize(25),
+                  width: AppDimensions.normalize(25),
+                  child: const Image(
+                    image: AssetImage('lib/assets/bacteria.png'),
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              formatter.format(totalData),
+              style: AppText.h2,
+            ),
+          ],
+        ),
       ),
     );
   }
