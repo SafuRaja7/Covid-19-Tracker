@@ -1,23 +1,18 @@
-import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
-import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
-<<<<<<< HEAD
-import 'package:covid_tracker/models/global.dart';
-import 'package:covid_tracker/providers/nav_bar_provider.dart';
-=======
-import 'package:covid_tracker/providers.dart';
->>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
-
-import 'package:covid_tracker/screens/countries_data_screen.dart';
-import 'package:covid_tracker/screens/countries_screen.dart';
-import 'package:covid_tracker/screens/dashboard.dart';
-import 'package:covid_tracker/screens/splash.dart';
-import 'package:covid_tracker/widgets/nav_bar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+
+import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
+import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+import 'package:covid_tracker/models/global.dart';
+import 'package:covid_tracker/providers/nav_bar_provider.dart';
+import 'package:covid_tracker/screens/countries_data_screen.dart';
+import 'package:covid_tracker/screens/countries_screen.dart';
+import 'package:covid_tracker/screens/dashboard.dart';
+import 'package:covid_tracker/screens/splash.dart';
+import 'package:covid_tracker/widgets/nav_bar.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -47,20 +42,14 @@ class MyApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<BottomNavigationBarProvider>(
-          create: (context) => BottomNavigationBarProvider(),
-        ),
         BlocProvider(
           create: (context) => CovidCubit(),
         ),
         BlocProvider(
           create: (context) => CountriesdataCubit(),
         ),
-<<<<<<< HEAD
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<BottomNavigationBarProvider>(
             create: (context) => BottomNavigationBarProvider()),
-=======
->>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
