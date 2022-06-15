@@ -1,8 +1,15 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+part 'global.g.dart';
+
+@HiveType(typeId: 0)
 class Covid {
+  @HiveField(0)
   final int? cases;
+  @HiveField(1)
   final int? deaths;
+  @HiveField(2)
   final int? recovered;
   Covid({
     required this.cases,

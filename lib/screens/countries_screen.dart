@@ -2,9 +2,7 @@ import 'package:covid_tracker/configs/app.dart';
 import 'package:covid_tracker/configs/app_dimensions.dart';
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
-import 'package:covid_tracker/models/countries.dart';
 import 'package:covid_tracker/widgets/countries_card.dart';
-import 'package:covid_tracker/widgets/search_country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +17,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   void initState() {
     final countriesCubit = BlocProvider.of<CountriesdataCubit>(context);
-    if (countriesCubit.state.data == null) {
+    if (countriesCubit.state.data == null ||
+        countriesCubit.state.data!.isEmpty) {
       countriesCubit.fetchCountry();
     }
     super.initState();
@@ -30,17 +29,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
     App.init(context);
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Countries"),
-          actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: SearchCountry());
-              },
-              icon: const Icon(Icons.search),
-            ),
-          ],
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [

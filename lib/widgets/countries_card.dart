@@ -22,38 +22,36 @@ class CountriesCard extends StatelessWidget {
           ),
         );
       },
-      child: SingleChildScrollView(
-        child: Container(
-          height: AppDimensions.normalize(25),
-          width: double.infinity,
-          margin: Space.all(0.5, 0.1),
-          padding: Space.all(0.7, 0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(
-              AppDimensions.normalize(1.5),
+      child: Container(
+        height: AppDimensions.normalize(25),
+        width: double.infinity,
+        margin: Space.all(0.5, 0.1),
+        padding: Space.all(0.7, 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(
+            AppDimensions.normalize(1.5),
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 1),
             ),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0, 1),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Space.y!,
-              Text(
-                country.country!,
-                style: AppText.h2!,
-              ),
-              Text(
-                formatter.format(country.cases),
-                style: AppText.h3!,
-              ),
-            ],
-          ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Space.y!,
+            Text(
+              country.country!,
+              style: AppText.h2!,
+            ),
+            Text(
+              formatter.format(country.cases),
+              style: AppText.h3!,
+            ),
+          ],
         ),
       ),
     );
