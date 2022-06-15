@@ -1,6 +1,5 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:flutter/material.dart';
-import '../animations/entrance_fader.dart';
 import '../configs/app.dart';
 
 class Splash extends StatefulWidget {
@@ -13,7 +12,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   void _nextScreen() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/global_data');
+      Navigator.pushNamed(context, '/nav_bar');
     });
   }
 

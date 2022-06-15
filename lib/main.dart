@@ -1,18 +1,31 @@
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
-import 'package:covid_tracker/cubit/navBar/navbar_cubit.dart';
+import 'package:covid_tracker/models/global.dart';
+import 'package:covid_tracker/providers/nav_bar_provider.dart';
 
 import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
 import 'package:covid_tracker/screens/dashboard.dart';
 import 'package:covid_tracker/screens/splash.dart';
+import 'package:covid_tracker/widgets/nav_bar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  Hive.registerAdapter<Covid>(
+    CovidAdapter(),
+  );
+
+  Hive.openBox('app');
+  Hive.openBox('globalBox');
+  Hive.openBox('countriesBox');
+
   runApp(const MyApp());
 }
 
@@ -33,9 +46,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CountriesdataCubit(),
         ),
-        BlocProvider<NavBarCubit>(
-          create: (context) => NavBarCubit(),
-        ),
+        ChangeNotifierProvider(
+            create: (context) => BottomNavigationBarProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -47,6 +59,7 @@ class MyApp extends StatelessWidget {
           '/global_data': (context) => const GlobalDataScreen(),
           '/countries_screen': (context) => const CountriesScreen(),
           '/countries_data_screen': (context) => const CountriesDataScreen(),
+          '/nav_bar': (context) => const BottomNavBar(),
         },
       ),
     );
