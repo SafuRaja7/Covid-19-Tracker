@@ -14,6 +14,15 @@ class CountryDataProvider {
           raw[index],
         ),
       );
+<<<<<<< HEAD
+=======
+      // if (query != null) {
+      //   countries = countries
+      //       .where((element) =>
+      //           element.country!.toLowerCase().contains(query.toLowerCase()))
+      //       .toList();
+      // }
+>>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
       return countries;
     } catch (e) {
       throw Exception("Internal Server Error");

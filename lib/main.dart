@@ -1,7 +1,11 @@
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+<<<<<<< HEAD
 import 'package:covid_tracker/models/global.dart';
 import 'package:covid_tracker/providers/nav_bar_provider.dart';
+=======
+import 'package:covid_tracker/providers.dart';
+>>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
 
 import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
@@ -34,20 +38,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.cyan,
+    ));
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<BottomNavigationBarProvider>(
+          create: (context) => BottomNavigationBarProvider(),
+        ),
         BlocProvider(
           create: (context) => CovidCubit(),
         ),
         BlocProvider(
           create: (context) => CountriesdataCubit(),
         ),
+<<<<<<< HEAD
         ChangeNotifierProvider(
             create: (context) => BottomNavigationBarProvider()),
+=======
+>>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
