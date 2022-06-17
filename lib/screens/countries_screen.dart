@@ -29,8 +29,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
     App.init(context);
     return SafeArea(
       child: Scaffold(
-<<<<<<< HEAD
-=======
         appBar: AppBar(
           title: const Text("Countries"),
           // actions: [
@@ -42,7 +40,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
           //   ),
           // ],
         ),
->>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
         body: SingleChildScrollView(
           child: Column(
             children: [

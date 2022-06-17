@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:covid_tracker/models/global.dart';
+import 'package:hive/hive.dart';
 
 part 'covid_state.dart';
 part 'data_provider.dart';

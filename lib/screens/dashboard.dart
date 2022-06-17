@@ -1,11 +1,5 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
-<<<<<<< HEAD
-=======
-import 'package:covid_tracker/providers.dart';
-import 'package:covid_tracker/screens/countries_data_screen.dart';
-import 'package:covid_tracker/screens/countries_screen.dart';
->>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
 import 'package:covid_tracker/widgets/global_data_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,8 +76,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 }
               },
             ),
-<<<<<<< HEAD
-=======
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -92,7 +84,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 child: const Text('Countries'),
               ),
             ),
->>>>>>> dd752f8d650f86756df97890b0c62f95aeecd737
           ],
         ),
       ),
