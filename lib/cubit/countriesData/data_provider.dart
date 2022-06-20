@@ -14,14 +14,17 @@ class CountryDataProvider {
           raw[index],
         ),
       );
-
-      // if (query != null) {
-      //   countries = countries
-      //       .where((element) =>
-      //           element.country!.toLowerCase().contains(query.toLowerCase()))
-      //       .toList();
-      // }
       return countries;
+    } on DioError catch (e) {
+      if (DioErrorType.other == e.type) {
+        if (e.message.contains('SocketException')) {
+          throw Exception('Poor internet connection. Please try again!');
+        } else {
+          throw Exception(e.message);
+        }
+      } else {
+        throw Exception('Problem connecting to the server. Please try again.');
+      }
     } catch (e) {
       throw Exception("Internal Server Error");
     }
