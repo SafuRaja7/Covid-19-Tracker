@@ -11,10 +11,25 @@ class GlobalDataProvider {
           await dio.get('https://coronavirus-19-api.herokuapp.com/all');
       Map<String, dynamic> raw = response.data;
       Covid covidData = Covid.fromMap(raw);
-      // cache.put(covidData, covidData);
+      await cache.put('covidData', covidData);
+      await appcache.put('covidData', covidData);
       return covidData;
     } catch (e) {
       throw Exception("Internal Server Error");
+    }
+  }
+
+  static Future<Covid?> fetchHive() async {
+    try {
+      Map<String, dynamic> cachedCovid = cache.get('covidData');
+      if (cachedCovid == null) {
+        return null;
+      }
+      Covid? covid = Covid.fromMap(cachedCovid);
+
+      return covid;
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }
