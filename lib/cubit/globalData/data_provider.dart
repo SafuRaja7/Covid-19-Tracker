@@ -9,23 +9,34 @@ class GlobalDataProvider {
     try {
       final response =
           await dio.get('https://coronavirus-19-api.herokuapp.com/all');
+
       Map<String, dynamic> raw = response.data;
       Covid covidData = Covid.fromMap(raw);
+
       await cache.put('covidData', covidData);
       await appcache.put('covidData', covidData);
+
       return covidData;
+    } on DioError catch (e) {
+      if (DioErrorType.other == e.type) {
+        if (e.message.contains('SocketException')) {
+          throw Exception('Poor internet connection. Please try again!');
+        } else {
+          throw Exception(e.message);
+        }
+      } else {
+        throw Exception('Problem connecting to the server. Please try again.');
+      }
     } catch (e) {
       throw Exception("Internal Server Error");
     }
   }
 
-  static Future<Covid?> fetchHive() async {
+  static Future<Covid> fetchHive() async {
     try {
-      Map<String, dynamic> cachedCovid = cache.get('covidData');
-      if (cachedCovid == null) {
-        return null;
-      }
-      Covid? covid = Covid.fromMap(cachedCovid);
+      Map<String, dynamic>? cachedCovid = cache.get('covidData');
+
+      Covid covid = Covid.fromMap(cachedCovid!);
 
       return covid;
     } catch (e) {
