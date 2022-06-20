@@ -76,14 +76,14 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 }
               },
             ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/countries_screen');
-                },
-                child: const Text('Countries'),
-              ),
-            ),
+            // Center(
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, '/countries_screen');
+            //     },
+            //     child: const Text('Countries'),
+            //   ),
+            // ),
           ],
         ),
       ),
