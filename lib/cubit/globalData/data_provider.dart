@@ -31,16 +31,4 @@ class GlobalDataProvider {
       throw Exception("Internal Server Error");
     }
   }
-
-  static Future<Covid> fetchHive() async {
-    try {
-      Map<String, dynamic>? cachedCovid = cache.get('covidData');
-
-      Covid covid = Covid.fromMap(cachedCovid!);
-
-      return covid;
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
 }

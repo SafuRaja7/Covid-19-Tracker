@@ -17,18 +17,10 @@ class CovidCubit extends Cubit<CovidState> {
   Future<void> fetchData() async {
     emit(const CovidLoading());
     try {
-      Duration? difference;
-      final currentTime = DateTime.now();
       Covid? data;
 
-      data = await repository.fetchHive();
-      DateTime? dataTime = Hive.box('app').get('covidData');
-      if (dataTime != null) {
-        difference = currentTime.difference(dataTime);
-      }
-      if (data == null || (difference != null && difference.inHours > 1)) {
-        data = await repository.fetchData();
-      }
+      data = await repository.fetchData();
+
       emit(
         CovidSuccess(data),
       );
