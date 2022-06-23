@@ -30,9 +30,9 @@ class _SplashState extends State<Splash> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 300,
-              child: Image(
+            SizedBox(
+              height: AppDimensions.normalize(150),
+              child: const Image(
                 image: AssetImage('lib/assets/splash.png'),
               ),
             ),
