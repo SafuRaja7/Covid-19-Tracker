@@ -1,4 +1,5 @@
 import 'package:covid_tracker/configs/app.dart';
+import 'package:covid_tracker/cubit/pakistan/pakistan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => CovidCubit()),
           BlocProvider(create: (context) => CountriesdataCubit()),
+          BlocProvider(create: (context) => PakistanCubit()),
           ChangeNotifierProvider(
               create: (context) => BottomNavigationBarProvider()),
           ChangeNotifierProvider(create: ((context) => ThemeProvider())),

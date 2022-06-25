@@ -5,8 +5,8 @@ class CountryDataProvider {
 
   static Future<List<Country>> fetchCountry() async {
     try {
-      final response =
-          await dio.get('https://coronavirus-19-api.herokuapp.com/countries');
+      final response = await dio
+          .get('https://coronavirus-19-api.herokuapp.com/countries?sort=cases');
       List raw = response.data;
       List<Country> countries = List.generate(
         raw.length,

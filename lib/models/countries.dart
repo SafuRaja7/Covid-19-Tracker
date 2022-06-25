@@ -98,4 +98,6 @@ class Country {
         active.hashCode ^
         critical.hashCode;
   }
+
+  where(bool Function(dynamic element) param0) {}
 }

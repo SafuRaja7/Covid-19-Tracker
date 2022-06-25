@@ -37,24 +37,22 @@ class _PakistanDataState extends State<PakistanData> {
             } else if (state is PakistanFailure) {
               return const Text('Something Went Wrong');
             } else if (state is PakistanSuccess) {
-              return ListView(children: [
-                ListView(
-                  children: [
-                    PakistanDataCard(
-                      headerString: 'Tested',
-                      data: state.data!.tested,
-                    ),
-                    PakistanDataCard(
-                      headerString: 'Critical',
-                      data: state.data!.critical,
-                    ),
-                    PakistanDataCard(
-                      headerString: 'Recovered',
-                      data: state.data!.recovered,
-                    ),
-                  ],
-                )
-              ]);
+              return ListView(
+                children: [
+                  PakistanDataCard(
+                    headerString: 'Tested',
+                    data: state.data!.tested,
+                  ),
+                  PakistanDataCard(
+                    headerString: 'Critical',
+                    data: state.data!.critical,
+                  ),
+                  PakistanDataCard(
+                    headerString: 'Recovered',
+                    data: state.data!.recovered,
+                  ),
+                ],
+              );
             } else {
               return const Text('OOps....An error occured..');
             }

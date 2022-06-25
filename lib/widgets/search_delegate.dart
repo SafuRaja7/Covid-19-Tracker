@@ -1,47 +1,57 @@
-import 'package:covid_tracker/configs/app.dart';
 import 'package:covid_tracker/configs/app_dimensions.dart';
-import 'package:covid_tracker/configs/configs.dart';
-import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
-import 'package:covid_tracker/widgets/countries_card.dart';
-import 'package:covid_tracker/widgets/search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CountriesScreen extends StatefulWidget {
-  const CountriesScreen({super.key});
+import '../cubit/countriesData/countries_cubit.dart';
+import 'countries_card.dart';
 
-  @override
-  State<CountriesScreen> createState() => _CountriesScreenState();
-}
+class Search extends SearchDelegate {
+  final List countryList;
 
-class _CountriesScreenState extends State<CountriesScreen> {
-  List<dynamic>? countryData;
+  Search(this.countryList);
   @override
-  void initState() {
-    final countriesCubit = BlocProvider.of<CountriesdataCubit>(context);
-    if (countriesCubit.state.data == null ||
-        countriesCubit.state.data!.isEmpty) {
-      countryData = countriesCubit.fetchCountry() as List<dynamic>;
-    }
-    super.initState();
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      ),
+    ];
   }
 
   @override
-  Widget build(BuildContext context) {
-    App.init(context);
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Countries"),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  showSearch(context: context, delegate: Search(countryData!));
-                },
-                icon: const Icon(Icons.search))
-          ],
-        ),
-        body: SingleChildScrollView(
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: const Icon(Icons.arrow_back_ios),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestionList = query.isEmpty
+        ? countryList
+        : countryList
+            .where(
+              ((element) => element['country']
+                  .toString()
+                  .toLowerCase()
+                  .startsWith(query)),
+            )
+            .toList();
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: ((context, index) {
+        return SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
@@ -73,8 +83,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
               ),
             ],
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
