@@ -1,6 +1,6 @@
 import 'package:covid_tracker/providers/nav_bar_provider.dart';
-import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
+import 'package:covid_tracker/screens/pakistan_data_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   var currentTab = const [
     GlobalDataScreen(),
     CountriesScreen(),
-    CountriesDataScreen(),
+    PakistanData(),
   ];
 
   @override
