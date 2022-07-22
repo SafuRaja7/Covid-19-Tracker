@@ -6,7 +6,7 @@ class PakistanDataProvider {
   static Future<Pakistan>? fetchData() async {
     try {
       final response = await dio.get(
-          'https://api.apify.com/v2/key-value-stores/QhfG8Kj6tVYMgud6R/records/LATEST?disableRedirect=true');
+          'https://coronavirus-19-api.herokuapp.com/countries/pakistan');
 
       Map<String, dynamic> raw = response.data;
 

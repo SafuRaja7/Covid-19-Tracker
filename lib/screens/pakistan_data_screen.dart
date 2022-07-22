@@ -40,12 +40,12 @@ class _PakistanDataState extends State<PakistanData> {
               return ListView(
                 children: [
                   PakistanDataCard(
-                    headerString: 'Tested',
-                    data: state.data!.tested,
+                    headerString: 'Cases',
+                    data: state.data!.cases,
                   ),
                   PakistanDataCard(
-                    headerString: 'Critical',
-                    data: state.data!.critical,
+                    headerString: 'Deaths',
+                    data: state.data!.deaths,
                   ),
                   PakistanDataCard(
                     headerString: 'Recovered',

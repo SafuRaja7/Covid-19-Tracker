@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:covid_tracker/configs/configs.dart';
+import 'package:covid_tracker/models/pakistan.dart';
 
 class PakistanDataCard extends StatelessWidget {
   final int? data;
   final String? headerString;
+  final Pakistan? pakistan;
 
   const PakistanDataCard({
     Key? key,
     this.data,
     this.headerString,
+    this.pakistan,
   }) : super(key: key);
 
   @override
@@ -19,6 +22,7 @@ class PakistanDataCard extends StatelessWidget {
     final formatter = NumberFormat("###,###");
     return Column(
       children: [
+        const Text('Pakistan'),
         Container(
           height: AppDimensions.normalize(35),
           width: double.infinity,
