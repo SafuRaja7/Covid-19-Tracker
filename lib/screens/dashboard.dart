@@ -73,33 +73,31 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
             body: Column(
               children: [
                 Container(
-                  height: AppDimensions.normalize(20),
+                  padding: Space.all(0.5, 0),
+                  height: AppDimensions.normalize(25),
                   width: double.infinity,
-                  color: Colors.red,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Expanded(
-                        child: InkWell(
-                          hoverColor: Colors.transparent,
-                          onTap: () {
-                            themeProvider.theme = !themeProvider.theme;
-                          },
-                          child: Container(
-                            height: AppDimensions.normalize(17),
-                            width: AppDimensions.normalize(17),
-                            decoration: BoxDecoration(
-                                color: themeProvider.isDark
-                                    ? Colors.grey[800]
-                                    : Colors.grey[200],
-                                shape: BoxShape.circle),
-                            child: Icon(
-                              Icons.brightness_6_outlined,
+                      InkWell(
+                        hoverColor: Colors.transparent,
+                        onTap: () {
+                          themeProvider.theme = !themeProvider.theme;
+                        },
+                        child: Container(
+                          height: AppDimensions.normalize(17),
+                          width: AppDimensions.normalize(17),
+                          decoration: BoxDecoration(
                               color: themeProvider.isDark
-                                  ? Colors.yellow
-                                  : Colors.grey,
-                              size: AppDimensions.normalize(15),
-                            ),
+                                  ? Colors.grey[800]
+                                  : Colors.grey[200],
+                              shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.brightness_6_outlined,
+                            color: themeProvider.isDark
+                                ? Colors.yellow
+                                : Colors.grey,
+                            size: AppDimensions.normalize(15),
                           ),
                         ),
                       ),
