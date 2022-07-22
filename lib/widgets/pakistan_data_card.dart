@@ -22,7 +22,6 @@ class PakistanDataCard extends StatelessWidget {
     final formatter = NumberFormat("###,###");
     return Column(
       children: [
-        const Text('Pakistan'),
         Container(
           height: AppDimensions.normalize(35),
           width: double.infinity,
@@ -72,6 +71,42 @@ class PakistanDataCard extends StatelessWidget {
             ],
           ),
         )
+      ],
+    );
+  }
+}
+
+class Flag extends StatelessWidget {
+  const Flag({super.key});
+
+  String emoji() {
+    int flagOffset = 0x1F1E6;
+    int asciiOffset = 0x41;
+
+    String country = "PK";
+
+    int firstChar = country.codeUnitAt(0) - asciiOffset + flagOffset;
+    int secondChar = country.codeUnitAt(1) - asciiOffset + flagOffset;
+
+    String emoji =
+        String.fromCharCode(firstChar) + String.fromCharCode(secondChar);
+    return emoji;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Text(
+          emoji(),
+          style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.1),
+        ),
+        Text(
+          "PAKISTAN",
+          style: TextStyle(
+              fontFamily: 'MyFont',
+              fontSize: MediaQuery.of(context).size.height * 0.05),
+        ),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/pakistan/pakistan_cubit.dart';
 import 'package:covid_tracker/widgets/pakistan_data_card.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +40,19 @@ class _PakistanDataState extends State<PakistanData> {
             } else if (state is PakistanSuccess) {
               return ListView(
                 children: [
+                  Space.yf(4),
+                  const Flag(),
+                  Space.y2!,
                   PakistanDataCard(
                     headerString: 'Cases',
                     data: state.data!.cases,
                   ),
+                  Space.y!,
                   PakistanDataCard(
                     headerString: 'Deaths',
                     data: state.data!.deaths,
                   ),
+                  Space.y!,
                   PakistanDataCard(
                     headerString: 'Recovered',
                     data: state.data!.recovered,
