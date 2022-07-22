@@ -72,40 +72,45 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
           child: Scaffold(
             body: Column(
               children: [
-                Row(
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        height: AppDimensions.normalize(90),
-                        child: Image.asset('lib/assets/global.png'),
-                      ),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                        hoverColor: Colors.transparent,
-                        onTap: () {
-                          themeProvider.theme = !themeProvider.theme;
-                        },
-                        child: Container(
-                          height: AppDimensions.normalize(30),
-                          width: AppDimensions.normalize(30),
-                          decoration: BoxDecoration(
-                            color: themeProvider.isDark
-                                ? Colors.grey[800]
-                                : Colors.grey[200],
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.brightness_6_outlined,
-                            color: themeProvider.isDark
-                                ? Colors.yellow
-                                : Colors.grey,
-                            size: AppDimensions.normalize(15),
+                Container(
+                  height: AppDimensions.normalize(20),
+                  width: double.infinity,
+                  color: Colors.red,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          hoverColor: Colors.transparent,
+                          onTap: () {
+                            themeProvider.theme = !themeProvider.theme;
+                          },
+                          child: Container(
+                            height: AppDimensions.normalize(17),
+                            width: AppDimensions.normalize(17),
+                            decoration: BoxDecoration(
+                                color: themeProvider.isDark
+                                    ? Colors.grey[800]
+                                    : Colors.grey[200],
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.brightness_6_outlined,
+                              color: themeProvider.isDark
+                                  ? Colors.yellow
+                                  : Colors.grey,
+                              size: AppDimensions.normalize(15),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+                Center(
+                  child: SizedBox(
+                    height: AppDimensions.normalize(80),
+                    child: Image.asset('lib/assets/global.png'),
+                  ),
                 ),
                 Text(
                   'Global Covid-19',
