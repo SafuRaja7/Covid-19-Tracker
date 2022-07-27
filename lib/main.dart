@@ -15,7 +15,6 @@ import 'package:covid_tracker/screens/countries_data_screen.dart';
 import 'package:covid_tracker/screens/countries_screen.dart';
 import 'package:covid_tracker/screens/dashboard.dart';
 import 'package:covid_tracker/screens/splash.dart';
-import 'package:covid_tracker/widgets/nav_bar.dart';
 import 'configs/core_theme.dart' as theme;
 
 void main() async {
@@ -85,7 +84,7 @@ class MaterialChild extends StatelessWidget {
         '/global_data': (context) => const GlobalDataScreen(),
         '/countries_screen': (context) => const CountriesScreen(),
         '/countries_data_screen': (context) => const CountriesDataScreen(),
-        '/nav_bar': (context) => const BottomNavBar(),
+        // '/nav_bar': (context) => const BottomNavBar(),
       },
     );
   }

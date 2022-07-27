@@ -6,8 +6,6 @@ import 'package:covid_tracker/widgets/countries_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/custom_text_fiels.dart';
-
 class CountriesScreen extends StatefulWidget {
   const CountriesScreen({super.key});
 
@@ -37,22 +35,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final countryCubit = BlocProvider.of<CountriesdataCubit>(context);
     App.init(context);
 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Countries"),
-          // actions: [
-          //   IconButton(
-          //       onPressed: () {
-          //         showSearch(
-          //             context: context,
-          //             delegate: Search(countriesCubit as List));
-          //       },
-          //       icon: const Icon(Icons.search))
-          // ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -60,7 +48,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
               SizedBox(
                 height: AppDimensions.normalize(5),
               ),
-              
               BlocBuilder<CountriesdataCubit, CountriesdataState>(
                 builder: (context, state) {
                   if (state is CountriesdataLoading) {

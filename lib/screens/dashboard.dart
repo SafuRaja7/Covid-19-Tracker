@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../configs/app.dart';
+import '../widgets/custom_navbar.dart';
 
 class GlobalDataScreen extends StatefulWidget {
   const GlobalDataScreen({Key? key}) : super(key: key);
@@ -72,38 +73,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
           child: Scaffold(
             body: Column(
               children: [
-                Container(
-                  padding: Space.all(0.5, 0),
-                  height: AppDimensions.normalize(25),
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        hoverColor: Colors.transparent,
-                        onTap: () {
-                          themeProvider.theme = !themeProvider.theme;
-                        },
-                        child: Container(
-                          height: AppDimensions.normalize(17),
-                          width: AppDimensions.normalize(17),
-                          decoration: BoxDecoration(
-                              color: themeProvider.isDark
-                                  ? Colors.grey[800]
-                                  : Colors.grey[200],
-                              shape: BoxShape.circle),
-                          child: Icon(
-                            Icons.brightness_6_outlined,
-                            color: themeProvider.isDark
-                                ? Colors.yellow
-                                : Colors.grey,
-                            size: AppDimensions.normalize(15),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Center(
                   child: SizedBox(
                     height: AppDimensions.normalize(80),
@@ -150,6 +119,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                     }
                   },
                 ),
+                const CustomNavBar(),
               ],
             ),
           ),

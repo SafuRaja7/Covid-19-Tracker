@@ -12,7 +12,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   void _nextScreen() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/nav_bar');
+      Navigator.pushNamed(context, '/global_data');
     });
   }
 
