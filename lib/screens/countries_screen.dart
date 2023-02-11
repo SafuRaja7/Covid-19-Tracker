@@ -2,6 +2,7 @@ import 'package:covid_tracker/configs/app.dart';
 import 'package:covid_tracker/configs/app_dimensions.dart';
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
+import 'package:covid_tracker/screens/search_screen.dart';
 import 'package:covid_tracker/widgets/countries_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,18 @@ class _CountriesScreenState extends State<CountriesScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Countries"),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const SearchScreen();
+                }));
+              },
+              child: const Icon(
+                Icons.search,
+              ),
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(

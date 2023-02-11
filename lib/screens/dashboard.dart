@@ -1,11 +1,9 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
-import 'package:covid_tracker/providers/theme_provider.dart';
 import 'package:covid_tracker/widgets/global_data_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../configs/app.dart';
 import '../widgets/custom_navbar.dart';
@@ -63,7 +61,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     App.init(context);
     return WillPopScope(
       onWillPop: _onWillPop,
