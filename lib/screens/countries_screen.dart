@@ -1,5 +1,4 @@
 import 'package:covid_tracker/configs/app.dart';
-import 'package:covid_tracker/configs/app_dimensions.dart';
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/countriesData/countries_cubit.dart';
 import 'package:covid_tracker/screens/search_screen.dart';
@@ -37,56 +36,62 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     App.init(context);
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Countries"),
+          leading: BackButton(
+            color: Colors.black,
+            onPressed: () => Navigator.pop(context),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "Countries",
+            style: AppText.h2!.cl(Colors.black),
+          ),
           actions: [
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const SearchScreen();
-                }));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SearchScreen();
+                    },
+                  ),
+                );
               },
-              child: const Icon(
-                Icons.search,
+              child: Padding(
+                padding: Space.h!,
+                child: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
               ),
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: AppDimensions.normalize(5),
-              ),
-              BlocBuilder<CountriesdataCubit, CountriesdataState>(
-                builder: (context, state) {
-                  if (state is CountriesdataLoading) {
-                    return const LinearProgressIndicator();
-                  } else if (state is CountriesdataFailure) {
-                    return Text(state.error!);
-                  } else if (state is CountriesdataSuccess) {
-                    return SizedBox(
-                      height: AppDimensions.normalize(292),
-                      child: ListView(
-                        children: state.data!
-                            .map(
-                              (country) => CountriesCard(country),
-                            )
-                            .toList(),
-                      ),
-                    );
-                  } else {
-                    return const Center(
-                      child: Text("Something went wrong!!"),
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
+        body: BlocBuilder<CountriesdataCubit, CountriesdataState>(
+          builder: (context, state) {
+            if (state is CountriesdataLoading) {
+              return const LinearProgressIndicator();
+            } else if (state is CountriesdataFailure) {
+              return Text(state.error!);
+            } else if (state is CountriesdataSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                children: state.data!
+                    .map(
+                      (country) => CountriesCard(country),
+                    )
+                    .toList(),
+              );
+            } else {
+              return const Center(
+                child: Text("Something went wrong!!"),
+              );
+            }
+          },
         ),
       ),
     );

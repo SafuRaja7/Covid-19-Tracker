@@ -1,5 +1,7 @@
 import 'package:covid_tracker/configs/configs.dart';
 import 'package:covid_tracker/cubit/globalData/covid_cubit.dart';
+import 'package:covid_tracker/screens/countries_screen.dart';
+import 'package:covid_tracker/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,8 +124,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                             color: Colors.deepPurple,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          height: AppDimensions.normalize(60),
-                          width: AppDimensions.normalize(130),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -140,140 +140,124 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                                 ),
                               ),
                               Space.y1!,
-                              Container(
-                                padding: Space.all(),
-                                height: AppDimensions.normalize(20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text(
-                                          '1000',
-                                          style: AppText.b2!.cl(
-                                            Colors.white,
+                              BlocBuilder<CovidCubit, CovidState>(
+                                builder: (context, state) {
+                                  if (state is CovidLoading) {
+                                    return const LinearProgressIndicator();
+                                  } else if (state is CovidFailure) {
+                                    return Text(state.error!);
+                                  } else if (state is CovidSuccess) {
+                                    return Container(
+                                      padding: Space.all(),
+                                      height: AppDimensions.normalize(30),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Space.y!,
+                                              Text(
+                                                state.data!.deaths!.toString(),
+                                                style: AppText.b2!.cl(
+                                                  Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Deaths',
+                                                style: AppText.b2!.cl(
+                                                  Colors.white,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        Text(
-                                          'Confirmed',
-                                          style: AppText.b2!.cl(
-                                            Colors.white,
+                                          Space.x!,
+                                          const VerticalDivider(
+                                            thickness: 2,
+                                            indent: 10,
+                                            endIndent: 10,
+                                            color: Colors.black,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Space.x1!,
-                                    const VerticalDivider(
-                                      thickness: 2,
-                                      color: Colors.black,
-                                    ),
-                                    Space.x1!,
-                                    Column(
-                                      children: [
-                                        Text(
-                                          '1000',
-                                          style: AppText.b2!.cl(
-                                            Colors.white,
+                                          Space.x!,
+                                          Column(
+                                            children: [
+                                              Space.y!,
+                                              Text(
+                                                state.data!.cases!.toString(),
+                                                style: AppText.b2!.cl(
+                                                  Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Cases',
+                                                style: AppText.b2!.cl(
+                                                  Colors.white,
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                        ),
-                                        Text(
-                                          'Active',
-                                          style: AppText.b2!.cl(
-                                            Colors.white,
+                                          Space.x!,
+                                          const VerticalDivider(
+                                            thickness: 2,
+                                            color: Colors.black,
+                                            indent: 10,
+                                            endIndent: 10,
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                    Space.x1!,
-                                    const VerticalDivider(
-                                      thickness: 2,
-                                      color: Colors.black,
-                                    ),
-                                    Space.x1!,
-                                    Column(
-                                      children: [
-                                        Text(
-                                          '1000',
-                                          style: AppText.b2!.cl(
-                                            Colors.white,
+                                          Space.x!,
+                                          Column(
+                                            children: [
+                                              Space.y!,
+                                              Text(
+                                                state.data!.recovered!
+                                                    .toString(),
+                                                style: AppText.b2!.cl(
+                                                  Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Recovered',
+                                                style: AppText.b2!.cl(
+                                                  Colors.white,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        Text(
-                                          'Recovered',
-                                          style: AppText.b2!.cl(
-                                            Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
+                                        ],
+                                      ),
+                                    );
+                                  } else {
+                                    return const Text('Something went Wrong');
+                                  }
+                                },
+                              ),
                             ],
                           ),
-                        ),
-                      ),
-                      Space.y1!,
-                      Positioned(
-                        left: 70,
-                        bottom: 120,
-                        child: Image.asset(
-                          'assets/doc-fight.png',
-                          height: AppDimensions.normalize(40),
                         ),
                       ),
                     ],
                   ),
                 ),
-
-                // Center(
-                //   child: SizedBox(
-                //     height: AppDimensions.normalize(80),
-                //     child: Image.asset('lib/assets/global.png'),
-                //   ),
-                // ),
-                // Text(
-                //   'Global Covid-19',
-                //   style: AppText.h1,
-                // ),
-                // Space.y!,
-                // BlocBuilder<CovidCubit, CovidState>(
-                //   builder: (context, state) {
-                //     if (state is CovidLoading) {
-                //       return const LinearProgressIndicator();
-                //     } else if (state is CovidFailure) {
-                //       return Text(state.error!);
-                //     } else if (state is CovidSuccess) {
-                //       return Expanded(
-                //         child: ListView(
-                //           children: [
-                //             DataCard(
-                //               global: 'Global',
-                //               totalCases: 'Total Cases',
-                //               totalData: state.data!.cases!,
-                //             ),
-                //             Space.y1!,
-                //             DataCard(
-                //               global: 'Global',
-                //               totalCases: 'Total Deaths',
-                //               totalData: state.data!.deaths,
-                //             ),
-                //             Space.y1!,
-                //             DataCard(
-                //               global: 'Global',
-                //               totalCases: 'Total Recovered',
-                //               totalData: state.data!.recovered,
-                //             ),
-                //           ],
-                //         ),
-                //       );
-                //     } else {
-                //       return const Text('Something went Wrong');
-                //     }
-                //   },
-                // ),
-                // const CustomNavBar(),
+                Space.y2!,
+                AppIconButton(
+                  text: 'Continents',
+                  onPressed: () {},
+                  backgroundColor: Colors.deepPurple,
+                ),
+                Space.y2!,
+                AppIconButton(
+                  text: 'Countries',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const CountriesScreen();
+                        },
+                      ),
+                    );
+                  },
+                  backgroundColor: Colors.deepPurple,
+                ),
               ],
             ),
           ),

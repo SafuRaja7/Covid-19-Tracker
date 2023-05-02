@@ -16,58 +16,42 @@ class CountriesData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatter = NumberFormat("###,###");
-    return Column(
-      children: [
-        Container(
-          height: AppDimensions.normalize(35),
-          width: double.infinity,
-          margin: Space.all(0.5, 0),
-          padding: Space.all(0.7, 0),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Colors.cyan, Colors.indigo],
-            ),
-            borderRadius: BorderRadius.circular(
-              AppDimensions.normalize(3),
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0, 10),
-                blurRadius: 12,
-                spreadRadius: 6.0,
-              ),
-            ],
+    return Container(
+      height: AppDimensions.normalize(35),
+      width: double.infinity,
+      margin: Space.all(0.5, 0),
+      padding: Space.all(0.7, 0),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Colors.cyan, Colors.indigo],
+        ),
+        borderRadius: BorderRadius.circular(
+          AppDimensions.normalize(3),
+        ),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0, 10),
+            blurRadius: 12,
+            spreadRadius: 6.0,
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Space.y!,
-                  Text(
-                    formatter.format(data),
-                    style: AppText.h1b,
-                  ),
-                  Space.y1!,
-                  Text(
-                    headerString!,
-                    style: AppText.h3!,
-                  ),
-                ],
-              ),
-              Opacity(
-                opacity: 0.5,
-                child: Image.asset(
-                  'lib/assets/virus.png',
-                  height: AppDimensions.normalize(25),
-                ),
-              ),
-            ],
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Space.y!,
+          Text(
+            formatter.format(data),
+            style: AppText.h1b,
           ),
-        )
-      ],
+          Space.y1!,
+          Text(
+            headerString!,
+            style: AppText.h3!,
+          ),
+        ],
+      ),
     );
   }
 }

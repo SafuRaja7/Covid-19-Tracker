@@ -15,48 +15,35 @@ class CountriesDataScreen extends StatelessWidget {
     App.init(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Data'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: BackButton(
+          onPressed: () => Navigator.pop(context),
+          color: Colors.black,
+        ),
+        title: Text(
+          'Data',
+          style: AppText.h2!.cl(Colors.black),
+        ),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Space.y1!,
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Space.xf(5),
-                  SizedBox(
-                    width: AppDimensions.normalize(70),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Total Cases',
-                          style: AppText.h2,
-                        ),
-                        Text(
-                          formatter.format(country!.cases),
-                          style: AppText.h1b!,
-                        ),
-                        Space.y!,
-                        Text(
-                          country!.country.toString(),
-                          style: AppText.h1!,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Opacity(
-                    opacity: 0.5,
-                    child: Image.asset(
-                      'lib/assets/coronavirus.png',
-                      height: AppDimensions.normalize(40),
-                    ),
-                  ),
-                ],
-              ),
+            Text(
+              'Total Cases',
+              style: AppText.h2,
+            ),
+            Text(
+              formatter.format(country!.cases),
+              style: AppText.h1b!,
+            ),
+            Space.y!,
+            Text(
+              country!.country.toString(),
+              style: AppText.h1!,
             ),
             Space.y2!,
             CountriesData(
@@ -65,24 +52,15 @@ class CountriesDataScreen extends StatelessWidget {
             ),
             Space.y!,
             CountriesData(
-              data: country!.critical,
-              headerString: 'Critical Cases',
-            ),
-            Space.y!,
-            CountriesData(
-              data: country!.todayDeaths,
-              headerString: 'Today Deaths',
-            ),
-            Space.y!,
-            CountriesData(
               data: country!.active,
               headerString: 'Active Cases',
             ),
             Space.y!,
             CountriesData(
-              data: country!.active,
-              headerString: 'Today Cases',
+              data: country!.recovered,
+              headerString: 'Recovered',
             ),
+            Space.y!,
           ],
         ),
       )),

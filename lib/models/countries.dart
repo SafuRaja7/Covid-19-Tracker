@@ -4,38 +4,30 @@ import 'dart:convert';
 class Country {
   final String? country;
   final int? cases;
-  final int? todayCases;
   final int? deaths;
-  final int? todayDeaths;
   final int? active;
-  final int? critical;
+  final int? recovered;
   Country({
     this.country,
     this.cases,
-    this.todayCases,
-    required this.deaths,
-    required this.todayDeaths,
-    required this.active,
-    required this.critical,
+    this.deaths,
+    this.active,
+    this.recovered,
   });
 
   Country copyWith({
     String? country,
     int? cases,
-    int? todayCases,
     int? deaths,
-    int? todayDeaths,
     int? active,
-    int? critical,
+    int? recovered,
   }) {
     return Country(
       country: country ?? this.country,
       cases: cases ?? this.cases,
-      todayCases: todayCases ?? this.todayCases,
       deaths: deaths ?? this.deaths,
-      todayDeaths: todayDeaths ?? this.todayDeaths,
       active: active ?? this.active,
-      critical: critical ?? this.critical,
+      recovered: recovered ?? this.recovered,
     );
   }
 
@@ -43,11 +35,9 @@ class Country {
     return <String, dynamic>{
       'country': country,
       'cases': cases,
-      'todayCases': todayCases,
       'deaths': deaths,
-      'todayDeaths': todayDeaths,
       'active': active,
-      'critical': critical,
+      'recovered': recovered,
     };
   }
 
@@ -55,12 +45,9 @@ class Country {
     return Country(
       country: map['country'] != null ? map['country'] as String : null,
       cases: map['cases'] != null ? map['cases'] as int : null,
-      todayCases: map['todayCases'] != null ? map['todayCases'] as int : null,
       deaths: map['deaths'] != null ? map['deaths'] as int : null,
-      todayDeaths:
-          map['todayDeaths'] != null ? map['todayDeaths'] as int : null,
       active: map['active'] != null ? map['active'] as int : null,
-      critical: map['critical'] != null ? map['critical'] as int : null,
+      recovered: map['recovered'] != null ? map['recovered'] as int : null,
     );
   }
 
@@ -71,33 +58,26 @@ class Country {
 
   @override
   String toString() {
-    return 'Country(country: $country, cases: $cases, todayCases: $todayCases, deaths: $deaths, todayDeaths: $todayDeaths, active: $active, critical: $critical)';
+    return 'Country(country: $country, cases: $cases, deaths: $deaths, active: $active, recovered: $recovered)';
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant Country other) {
     if (identical(this, other)) return true;
 
-    return other is Country &&
-        other.country == country &&
+    return other.country == country &&
         other.cases == cases &&
-        other.todayCases == todayCases &&
         other.deaths == deaths &&
-        other.todayDeaths == todayDeaths &&
         other.active == active &&
-        other.critical == critical;
+        other.recovered == recovered;
   }
 
   @override
   int get hashCode {
     return country.hashCode ^
         cases.hashCode ^
-        todayCases.hashCode ^
         deaths.hashCode ^
-        todayDeaths.hashCode ^
         active.hashCode ^
-        critical.hashCode;
+        recovered.hashCode;
   }
-
-  where(bool Function(dynamic element) param0) {}
 }

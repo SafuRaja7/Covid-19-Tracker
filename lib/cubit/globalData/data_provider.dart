@@ -8,7 +8,7 @@ class GlobalDataProvider {
   static Future<Covid> fetchData() async {
     try {
       final response =
-          await dio.get('https://coronavirus-19-api.herokuapp.com/all');
+          await dio.get('https://corona.lmao.ninja/v2/all');
 
       Map<String, dynamic> raw = response.data;
       Covid covidData = Covid.fromMap(raw);

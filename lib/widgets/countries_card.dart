@@ -23,7 +23,6 @@ class CountriesCard extends StatelessWidget {
         );
       },
       child: Container(
-        height: AppDimensions.normalize(25),
         width: double.infinity,
         margin: Space.all(0.5, 0.1),
         padding: Space.all(0.7, 0),
@@ -47,10 +46,12 @@ class CountriesCard extends StatelessWidget {
               country.country!,
               style: AppText.h2!,
             ),
+            Space.y!,
             Text(
-              formatter.format(country.cases),
+              '${formatter.format(country.cases)} Cases',
               style: AppText.h3!,
             ),
+            Space.y!,
           ],
         ),
       ),
